@@ -1,0 +1,9 @@
+{
+  "name": "Lab18",
+  "type": "module",
+  "version": "1.0.0",
+  "dependencies": {
+    "sequelize": "^6.16.1",
+    "tedious": "^14.3.0"
+  }
+}
