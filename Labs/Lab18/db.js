@@ -1,4 +1,4 @@
-import { Auditorium, AuditoriumType, Faculty, Pulpit, Subject, } from './entities.js';
+import { Auditorium, AuditoriumType, Faculty, Pulpit, Subject } from './entities.js';
 
 export class DB {
 
