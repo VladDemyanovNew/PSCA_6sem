@@ -26,7 +26,7 @@ app.use((
     next) => {
     response.status(error.status);
     response.send({ error: error.message });
-})
+});
 
 sequelize.authenticate()
     .then(async () => {

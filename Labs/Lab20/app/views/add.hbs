@@ -1,0 +1,25 @@
+<style type="text/css">
+    .controls {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 8px;
+    }
+
+    .users-row {
+        pointer-events: none;
+    }
+</style>
+
+{{>user-list}}
+
+<div class="user-info">
+    <input type="text" name="name" form="add" placeholder="ФИО">
+    <input type="text" name="phone_number" form="add" placeholder="Телефон">
+</div>
+
+<div class="controls">
+    <form id="add" action="/users/add" method="POST">
+        <button type="submit">Добавить</button>
+    </form>
+    {{cancelOperation}}
+</div>

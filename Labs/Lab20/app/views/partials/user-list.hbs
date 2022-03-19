@@ -1,0 +1,41 @@
+<style type="text/css">
+    .users {
+        display: grid;
+        row-gap: 6px;
+    }
+
+    .users-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        background: lightgrey;
+        padding: 8px;
+        border: solid 1px gray;
+    }
+
+    .users-row:hover {
+        background: #b4b4b4;
+    }
+
+    .users-row-cell {
+        display: flex;
+        align-items: center;
+    }
+</style>
+
+<div class="users">
+    <div class="users-row">
+        <div class="users-row-cell">Id</div>
+        <div class="users-row-cell">ФИО</div>
+        <div class="users-row-cell">Номер телефона</div>
+    </div>
+    {{#each users}}
+        <a
+            class="users-row"
+            href="/users/update/{{this.id}}"
+        >
+            <div class="users-row-cell">{{this.id}}</div>
+            <div class="users-row-cell">{{this.name}}</div>
+            <div class="users-row-cell">{{this.phone_number}}</div>
+        </a>
+    {{/each}}
+</div>
