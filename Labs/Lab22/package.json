@@ -1,0 +1,28 @@
+{
+  "name": "Lab22",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app/22-02.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "express": "^4.17.3",
+    "express-session": "^1.17.2",
+    "handlebars": "^4.7.7",
+    "hbs": "^4.2.0",
+    "http-errors": "^2.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.21",
+    "passport": "^0.5.2",
+    "passport-local": "^1.0.0",
+    "redis": "^4.0.6",
+    "sequelize": "^6.19.0",
+    "tedious": "^14.4.0"
+  }
+}

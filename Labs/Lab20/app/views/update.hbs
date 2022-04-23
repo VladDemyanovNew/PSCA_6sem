@@ -15,26 +15,33 @@
 <div class="user-info">
     <input name="pristineName" type="text" value="{{this.user.name}}" hidden>
     <input name="pristinePhone" type="text" value="{{this.user.phone_number}}" hidden>
-    <input
-        type="text"
-        name="name"
-        value="{{this.user.name}}"
-        form="update"
-        oninput="formValueChangeHandler()"
-    >
-    <input
-        type="text"
-        name="phone_number"
-        value="{{this.user.phone_number}}"
-        form="update"
-        oninput="formValueChangeHandler()"
-    >
+    <div class="form-input">
+        <input
+            type="text"
+            name="name"
+            value="{{this.user.name}}"
+            form="update"
+            oninput="formValueChangeHandler()"
+        >
+        <span class="error-message name-require-error hidden">Поле обязательное</span>
+    </div>
+    <div class="form-input">
+        <input
+            type="text"
+            name="phone_number"
+            value="{{this.user.phone_number}}"
+            form="update"
+            oninput="formValueChangeHandler()"
+        >
+        <span class="error-message phone-format-error hidden">Телефон не соответсвует формату</span>
+        <span class="error-message phone-require-error hidden">Поле обязательное</span>
+    </div>
 </div>
 
 <div class="controls">
     <form id="update" action="/users/update" method="POST">
         <input type="number" name="id" value="{{this.user.id}}" hidden>
-        <button type="submit">Изменить</button>
+        <button type="submit" id="editBtn" disabled>Изменить</button>
     </form>
     <form action="/users/delete" method="POST">
         <input type="number" name="userId" value="{{this.user.id}}" hidden>
@@ -45,12 +52,24 @@
 
 <script type="text/javascript">
     const deleteBtn = document.getElementById('deleteBtn');
+    const editBtn = document.getElementById('editBtn');
     const pristineName = document.getElementsByName('pristineName')[0].value;
     const pristinePhone = document.getElementsByName('pristinePhone')[0].value;
+    const phone_format_error = document.querySelector('.phone-format-error');
+    const phone_require_error = document.querySelector('.phone-require-error');
+    const name_require_error = document.querySelector('.name-require-error');
 
     function formValueChangeHandler() {
         const name = document.getElementsByName('name')[0].value;
         const phone = document.getElementsByName('phone_number')[0].value;
+
+        displayErrorMessages(name, phone);
+
+        if (doesFormValid(name, phone)) {
+            editBtn.disabled = false;
+        } else {
+            editBtn.disabled = true;
+        }
 
         if (name !== pristineName || phone !== pristinePhone) {
             deleteBtn.disabled = true;

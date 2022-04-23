@@ -13,13 +13,52 @@
 {{>user-list}}
 
 <div class="user-info">
-    <input type="text" name="name" form="add" placeholder="ФИО">
-    <input type="text" name="phone_number" form="add" placeholder="Телефон">
+    <div class="form-input">
+        <input
+            type="text"
+            name="name"
+            form="add"
+            placeholder="ФИО"
+            oninput="formValueChangeHandler()"
+        >
+        <span class="error-message name-require-error hidden">Поле обязательное</span>
+    </div>
+    <div class="form-input">
+        <input
+            type="text"
+            name="phone_number"
+            form="add"
+            placeholder="Телефон"
+            oninput="formValueChangeHandler()"
+        >
+        <span class="error-message phone-format-error hidden">Телефон не соответсвует формату</span>
+        <span class="error-message phone-require-error hidden">Поле обязательное</span>
+    </div>
 </div>
 
 <div class="controls">
     <form id="add" action="/users/add" method="POST">
-        <button type="submit">Добавить</button>
+        <button type="submit" id="addBtn" disabled>Добавить</button>
     </form>
     {{cancelOperation}}
 </div>
+
+<script type="text/javascript">
+    const addBtn = document.getElementById('addBtn');
+    const phone_format_error = document.querySelector('.phone-format-error');
+    const phone_require_error = document.querySelector('.phone-require-error');
+    const name_require_error = document.querySelector('.name-require-error');
+
+    function formValueChangeHandler() {
+        const phone = document.getElementsByName('phone_number')[0].value;
+        const name = document.getElementsByName('name')[0].value;
+
+        displayErrorMessages(name, phone);
+
+        if (doesFormValid(name, phone)) {
+            addBtn.disabled = false;
+        } else {
+            addBtn.disabled = true;
+        }
+    }
+</script>

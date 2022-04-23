@@ -4,27 +4,27 @@ let users = [
     {
         id: 1,
         name: 'Петров В.В.',
-        phone_number: 1123457,
+        phone_number: '8(999)123-45-64',
     },
     {
         id: 2,
         name: 'Сидоров С.С.',
-        phone_number: 3213321,
+        phone_number: '8(999)123-45-64',
     },
     {
         id: 3,
         name: 'Алексеев А.А.',
-        phone_number: 4323422,
+        phone_number: '8(999)123-45-64',
     },
     {
         id: 4,
         name: 'Фёдоров Ф.Ф.',
-        phone_number: 8899912,
+        phone_number: '8(999)123-45-64',
     },
     {
         id: 5,
         name: 'Павлов П.П.',
-        phone_number: 9800988,
+        phone_number: '8(999)123-45-64',
     }
 ];
 
