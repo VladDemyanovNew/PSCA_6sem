@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lab29</title>
+</head>
+<body>
+<p>sum(3, 5) = <span id="sum"></span></p>
+<p>mul(3, 5) = <span id="mul"></span></p>
+<p>sub(3, 5) = <span id="sub"></span></p>
+<script>
+  (async () => {
+    let response = fetch('http://localhost:3000/out.wasm');
+    const { instance } = await WebAssembly.instantiateStreaming(response);
+
+    sum.innerHTML = instance.exports.sum(3, 5);
+    mul.innerHTML = instance.exports.mul(3, 5);
+    sub.innerHTML = instance.exports.sub(3, 5);
+  })();
+
+</script>
+</body>
+</html>

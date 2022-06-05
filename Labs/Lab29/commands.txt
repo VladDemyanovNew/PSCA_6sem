@@ -1,0 +1,2 @@
+source ./emsdk_env.sh
+emcc -o out.wasm -s WASM=1 in.c --no-entry

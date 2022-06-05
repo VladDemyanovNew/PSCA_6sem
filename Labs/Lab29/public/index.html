@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lab29</title>
+</head>
+<body>
+<p>sum(3, 5) = <span id="sum"></span></p>
+<p>mul(3, 5) = <span id="mul"></span></p>
+<p>sub(3, 5) = <span id="sub"></span></p>
+<script>
+  let wasmCode = new Uint8Array([
+    0, 97, 115, 109, 1, 0, 0, 0, 1, 135, 128, 128, 128, 0, 1, 96, 2, 127, 127,
+    1, 127, 3, 132, 128, 128, 128, 0, 3, 0, 0, 0, 4, 132, 128, 128, 128, 0, 1,
+    112, 0, 0, 5, 131, 128, 128, 128, 0, 1, 0, 1, 6, 129, 128, 128, 128, 0, 0,
+    7, 156, 128, 128, 128, 0, 4, 6, 109, 101, 109, 111, 114, 121, 2, 0, 3, 115,
+    117, 109, 0, 0, 3, 109, 117, 108, 0, 1, 3, 115, 117, 98, 0, 2, 10, 165, 128,
+    128, 128, 0, 3, 135, 128, 128, 128, 0, 0, 32, 1, 32, 0, 106, 11, 135, 128,
+    128, 128, 0, 0, 32, 1, 32, 0, 108, 11, 135, 128, 128, 128, 0, 0, 32, 0, 32, 1, 107, 11]);
+
+  let wasmImports = {};
+  const wasmModule = new WebAssembly.Module(wasmCode);
+  const wasmInstance = new WebAssembly.Instance(wasmModule, wasmImports);
+
+  sum.innerHTML = wasmInstance.exports.sum(3, 5);
+  mul.innerHTML = wasmInstance.exports.mul(3, 5);
+  sub.innerHTML = wasmInstance.exports.sub(3, 5);
+</script>
+</body>
+</html>
