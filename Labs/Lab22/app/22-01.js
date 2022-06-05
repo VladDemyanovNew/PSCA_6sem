@@ -1,7 +1,7 @@
 import express from 'express';
 import passport from 'passport';
 import LocalStrategy from 'passport-local';
-import { getByName } from './task1.persistence.js';
+import { getByName } from './22-01.persistence.js';
 import session from 'express-session';
 
 const app = express();

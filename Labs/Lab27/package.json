@@ -1,0 +1,24 @@
+{
+  "name": "Lab27",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app/index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app/27-01.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@googleapis/docs": "^0.4.1",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "google-auth-library": "^8.0.2",
+    "googleapis": "^39.2.0",
+    "http-errors": "^2.0.0",
+    "multer": "^1.4.5-lts.1",
+    "webdav": "^4.10.0"
+  }
+}
