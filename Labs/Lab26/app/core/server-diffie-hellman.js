@@ -7,7 +7,7 @@ export class ServerDiffieHellman {
     this.prime = this.diffieHelman.getPrime();
     this.generatorB = this.diffieHelman.getGenerator();
     this.key = this.diffieHelman.generateKeys();
-    this.clientContext = undefined;
+    this.clientContext = null;
   }
 
   getContext() {

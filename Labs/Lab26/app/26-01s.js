@@ -19,29 +19,23 @@ app.post('/endHandshake', (request, response) => {
   });
   request.on('end', () => {
     serverDiffieHellman.clientContext = JSON.parse(clientContext);
-    console.log('clientContext', serverDiffieHellman.clientContext);
-    response.send({
-      message: 'Success!',
-    });
+    response.send('Handshake has been completed successfully!');
   });
 });
 
 app.get('/resource', (request, response) => {
-  const serverSecret = serverDiffieHellman.getSecret(serverDiffieHellman.clientContext);
-  console.log('serverSecret', serverSecret);
-  var buf = new Buffer(32);
-  console.log('buf:', serverSecret.copy(buf, 0, 0, 32));
-  const rs = fs.createReadStream('./files/in.txt');
-  const ws = fs.createWriteStream('./files/out.txt');
-  encrypt(rs, ws, buf);
-  response.end('Success');
-});
+  if (!serverDiffieHellman.clientContext) {
+    response
+      .status(409)
+      .end('Access denied!');
+    return;
+  }
 
-// app.get('/resource', (request, response) => {
-//   let rs2 = fs.createReadStream('./files/out.txt');
-//   rs2.pipe(response);
-//   rs2.on('close', () => {
-//     console.log(rs2.bytesRead);
-//     response.end();
-//   });
-// });
+  const serverSecret = serverDiffieHellman.getSecret(serverDiffieHellman.clientContext);
+  fs.readFile('./files/message.txt', (error, data) => {
+    let buffer = new Buffer(32);
+    serverSecret.copy(buffer, 0, 0, 32);
+    const result = encrypt(data, buffer);
+    response.send(result);
+  });
+});
