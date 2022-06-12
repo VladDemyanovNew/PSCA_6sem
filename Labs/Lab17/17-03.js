@@ -1,8 +1,8 @@
 import { createClient } from 'redis';
 
 const client = createClient({
-    url: 'redis://redis-15728.c10.us-east-1-2.ec2.cloud.redislabs.com:15728',
-    password: 'iji8ItnLkUmtwiFTwpqG7gRDDgRIeyTQ'
+  url: 'redis://redis-18266.c99.us-east-1-4.ec2.cloud.redislabs.com:18266',
+  password: '0UiYbZhFSMDK4XvanFlotbMlk9FX38CZ'
 });
 
 client.on('error', (err) => console.log('Redis Client Error', err));
@@ -28,13 +28,13 @@ console.timeEnd(label2);
 console.log('incr after decr:', await client.get('incr'));
 
 async function testIncr() {
-    for (let i = 0; i < n; i++) {
-        await client.incr('incr');
-    }
+  for (let i = 0; i < n; i++) {
+    await client.incr('incr');
+  }
 }
 
 async function testDecr() {
-    for (let i = 0; i < n; i++) {
-        await client.decr('incr');
-    }
+  for (let i = 0; i < n; i++) {
+    await client.decr('incr');
+  }
 }

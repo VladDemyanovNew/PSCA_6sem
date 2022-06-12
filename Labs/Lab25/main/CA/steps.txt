@@ -1,0 +1,7 @@
+1. Генерация приватного ключа CA:
+    openssl genrsa -out LAB.key 2048
+2. Генерация сертификата CA:
+    openssl req -x509 -new -key CA.key -days 700 -sha256 -out CA.crt
+3. Получение от Resource запроса на сертификат
+4. Генерация сертификата для ресурса:
+    openssl x509 -req -in LAB.csr -CA CA.crt -CAkey CA.key -CAcreateserial -out LAB.crt -days 365 -sha256 -extensions v3_req -extfile client.cnf

@@ -1,0 +1,6 @@
+1. Генерация приватного ключа ресурса:
+    openssl genrsa -out LAB.key 2048
+2. Генерация запроса на сертификат для ресурса
+    openssl req -new -key LAB.key -out LAB.csr -sha256 -config client.cnf
+
+LAB.csr - сам запрос
