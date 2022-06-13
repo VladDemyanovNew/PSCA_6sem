@@ -1,7 +1,6 @@
 import { createClient } from 'webdav';
 import createError from 'http-errors';
 import dotenv from 'dotenv';
-import * as fs from 'fs';
 
 dotenv.config();
 
@@ -10,7 +9,7 @@ const client = createClient('https://webdav.yandex.ru', {
   password: process.env.YANDEX_DRIVE_PASSWORD,
 });
 
-export class GoogleDriveService {
+export class YandexDriveService {
 
   async createDirectory(directoryName, next) {
     const doesDirectoryExist = await client.exists(directoryName);
