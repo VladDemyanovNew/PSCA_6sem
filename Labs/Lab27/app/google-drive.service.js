@@ -30,10 +30,9 @@ export class GoogleDriveService {
     await client.deleteFile(`/${ directoryName }`);
   }
 
-  async uploadFile(filename, filedata, next) {
-    let rs = fs.createReadStream('./app/files/t.txt');
-    let ws = client.createWriteStream('t.txt');
-    rs.pipe(ws);
+  async uploadFile(filename, readStream, next) {
+    let writeStream = client.createWriteStream(filename);
+    readStream.pipe(writeStream);
   }
 
   async downloadFile(filename, next) {
@@ -41,7 +40,7 @@ export class GoogleDriveService {
     if (!doesFileExist) {
       return next(createError(404, 'Can\'t download file, because it doesn\'t exist'));
     }
-    return client.createReadStream('Горы.jpg');
+    return client.createReadStream(filename);
   }
 
   async deleteFile(filename, next) {
@@ -58,7 +57,7 @@ export class GoogleDriveService {
       return next(createError(404, 'Can\'t copy file, because it doesn\'t exist'));
     }
 
-    await client.copyFile(sourceFilename, destFilename);
+    client?.copyFile(sourceFilename, destFilename);
   }
 
   async moveFile(sourceFilename, destFilename, next) {
@@ -67,6 +66,6 @@ export class GoogleDriveService {
       return next(createError(404, 'Can\'t move file, because it doesn\'t exist'));
     }
 
-    await client.moveFile(sourceFilename, destFilename);
+    client?.moveFile(sourceFilename, destFilename);
   }
 }
